@@ -11,7 +11,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 const corsOptions = {
-    origin : '*',
+    origin : 'https://login-form-olive-nine.vercel.app/',
     credential : true,
     optionSuccessStatus : 200
 }
@@ -56,6 +56,10 @@ app.get('/users', async (req,res)=>{
     catch(err){
         console.log(err);
     }
+})
+
+app.get('/',(req,res) =>{
+    return res.json('Hello')
 })
 // app.use('/',router);
 mongoose.connect(process.env.DB_URI)
