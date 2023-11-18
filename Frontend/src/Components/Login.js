@@ -81,6 +81,15 @@ export default function Login() {
     </div>
     <div>{Error}</div>
     </div>
+    <div className="container">
+      {Data.map((ele,index)=>{
+        return(
+        <div key={index}>
+          <p>{ele.UserName}</p>
+        </div>
+        )
+      })}
+    </div>
     </>
   )
 }

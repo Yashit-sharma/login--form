@@ -3,6 +3,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const router = require('./routes/router')
 const mongoose = require('mongoose');
+const schemas = require('./models/Schemas') 
 require('dotenv/config');
 
 
@@ -16,7 +17,47 @@ const corsOptions = {
 }
 app.use(cors(corsOptions));
 
-app.use('/',router);
+app.post('/loginData', async(req,res)=>{
+    const {Email,Pass} = req.body;
+    const UserName = Email;
+    const exist = await schemas.Users.findOne({UserName})
+    if(!exist){
+        return res.json({Message : "User Not Found"});
+    }
+    else{
+        if(Pass === exist.PassWord){
+           return res.json({Message : "Logged In SuccessFully",Bool : true})
+        }
+        else{
+           return res.json({Message : "PassWord Incorrect",Bool : false})
+        }
+    }
+})
+
+app.post('/usersData', async(req,res)=>{
+    try{
+        const {User,Pass} = req.body;
+        const Data = {UserName : User,PassWord : Pass};
+        const NewData = schemas.Users(Data);
+        await NewData.save();
+        return res.json({Message : `Added User`})
+    }
+    catch(err){
+        console.log(err);
+        return res.json({Message : `Duplicate User Found`,Error : `${err}`})
+    }
+})
+
+app.get('/users', async (req,res)=>{
+    try{
+    const userData = await schemas.Users.find({}).exec();
+    res.json(userData);
+    }
+    catch(err){
+        console.log(err);
+    }
+})
+// app.use('/',router);
 mongoose.connect(process.env.DB_URI)
 .then(() => console.log("DB connected"))
 .catch(err => console.log(err));
