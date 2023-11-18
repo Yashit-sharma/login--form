@@ -11,7 +11,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 const corsOptions = {
-    origin : 'https://login-form-olive-nine.vercel.app/',
+    origin : 'https://login-form-front.vercel.app',
     credential : true,
     optionSuccessStatus : 200
 }

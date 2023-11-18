@@ -10,11 +10,11 @@ export default function Login() {
   const [Error, setError] = useState('')
   const [Data, setData] = useState([]);
   const Disabled = !userName || !PassWord;
-
+  axios.defaults.withCredentials = true;
   useEffect(() => {
   const fetchData = async() =>{
   try{
-    const Response = await axios.get('http://localhost:4000/users')
+    const Response = await axios.get('https://login-form-olive-nine.vercel.app/users')
     setData(Response.data)
   }
   catch(err){
@@ -30,7 +30,7 @@ export default function Login() {
         Email : userName,
         Pass : PassWord
       }
-      await axios.post('http://localhost:4000/loginData',LoginData)
+      await axios.post('https://login-form-olive-nine.vercel.app/loginData',LoginData)
       .then(res=>{
         setError(res.data.Message)
         res.data.Bool ? setLoggedIn(true) : setLoggedIn(false)
@@ -46,7 +46,7 @@ export default function Login() {
         User : userName,
         Pass : PassWord
       }
-      await axios.post('http://localhost:4000/usersData',Data)
+      await axios.post('https://login-form-olive-nine.vercel.app/usersData',Data)
       .then(res => {
         setError(res.data.Message)
       });
