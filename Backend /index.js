@@ -13,7 +13,8 @@ app.use(bodyParser.urlencoded({extended:false}));
 const corsOptions = {
     origin : 'https://login-form-front.vercel.app',
     credential : true,
-    optionSuccessStatus : 200
+    methods : ["POST","GET"]
+    // optionSuccessStatus : 200
 }
 app.use(cors(corsOptions));
 
@@ -58,8 +59,8 @@ app.get('/users', async (req,res)=>{
     }
 })
 
-app.get('/',(req,res) =>{
-    return res.json('Hello')
+app.get('/',async (req,res) =>{
+    return res.json('Hello this is working')
 })
 // app.use('/',router);
 mongoose.connect(process.env.DB_URI)
