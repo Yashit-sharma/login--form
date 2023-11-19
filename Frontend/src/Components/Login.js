@@ -82,7 +82,6 @@ export default function Login() {
     <button className="btn btn-success" disabled={Disabled} onClick={()=>{handleSubmitLogIn()}}>Log In</button>
     </div>
     <div>{Error}</div>
-    </div>
     <div className="container">
       {Data.map((ele,index)=>{
         return(
@@ -91,6 +90,7 @@ export default function Login() {
         </div>
         )
       })}
+    </div>
     </div>
     </>
   )
