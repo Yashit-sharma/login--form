@@ -12,8 +12,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 const corsOptions = {
     origin : 'https://login-form-front.vercel.app',
-    credential : true
-    // methods : ["POST","GET"]
+    credentials : true,
+    methods : ["POST","GET"]
 }
 app.use(cors(corsOptions));
 

@@ -14,7 +14,9 @@ export default function Login() {
   useEffect(() => {
   const fetchData = async() =>{
   try{
-    const Response = await axios.get('https://login-form-olive-nine.vercel.app/users')
+    const Response = await axios.get('https://login-form-olive-nine.vercel.app/users',{
+      withCredentials:true
+    })
     setData(Response.data)
   }
   catch(err){
