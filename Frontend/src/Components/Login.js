@@ -82,15 +82,6 @@ export default function Login() {
     <button className="btn btn-success" disabled={Disabled} onClick={()=>{handleSubmitLogIn()}}>Log In</button>
     </div>
     <div>{Error}</div>
-    <div className="container">
-      {Data.map((ele,index)=>{
-        return(
-        <div key={index}>
-          <p>{ele.UserName}</p>
-        </div>
-        )
-      })}
-    </div>
     </div>
     </>
   )
