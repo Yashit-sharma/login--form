@@ -68,9 +68,9 @@ export default function Login() {
     setUserName('');
     setPassWord('');
   }
-  const handleSubmitLogIn = () =>{
-    axiosLogPost();
-    setPassWord('');
+  const handleSubmitLogIn = async() =>{
+    await axiosLogPost()
+    .then(setPassWord(''));
   }
   return (
     <>
