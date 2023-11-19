@@ -14,7 +14,6 @@ const corsOptions = {
     origin : 'https://login-form-front.vercel.app',
     credential : true,
     methods : ["POST","GET"]
-    // optionSuccessStatus : 200
 }
 app.use(cors(corsOptions));
 
@@ -60,7 +59,14 @@ app.get('/users', async (req,res)=>{
 })
 
 app.get('/',async (req,res) =>{
-    return res.json('Hello this is working')
+    // return res.json('Hello this is working')
+    try{
+        const userData = await schemas.Users.find({}).exec();
+        res.json(userData);
+        }
+        catch(err){
+            console.log(err);
+        }
 })
 // app.use('/',router);
 mongoose.connect(process.env.DB_URI)
